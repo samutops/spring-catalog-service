@@ -39,9 +39,15 @@ class BookJsonTests {
                     "price": 9.90
                 }
                 """;
-        assertThat(json.parse(content))
-                .usingRecursiveComparison()
-                .isEqualTo(Book.of("1234567890", "Title", "Author", 9.90, null));
+        var book = Book.of("1234567890", "Title", "Author", 9.90, null);
+
+        // The book record has a createdDate and lastModifiedDate set to the current time, but the parsed JSON will not have these fields.
+        var jsonContent = json.parse(content);
+
+        assertThat(jsonContent).usingRecursiveComparison()
+                .ignoringFields("createdDate", "lastModifiedDate")
+                .isEqualTo(book);
+
     }
 
 }
