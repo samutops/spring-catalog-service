@@ -36,8 +36,8 @@ class CatalogServiceApplicationTests {
     private WebTestClient webTestClient;
 
     @Container
-    private static final KeycloakContainer keycloakContainer = new KeycloakContainer("quay.io/keycloak/keycloak:24.0")
-            .withRealmImportFile("/test-realm-config.json");
+    private static final KeycloakContainer keycloakContainer = new KeycloakContainer("quay.io/keycloak/keycloak:26.3")
+            .withRealmImportFile("test-realm-config.json");
 
     @DynamicPropertySource
     static void dynamicProperties(DynamicPropertyRegistry registry) {
